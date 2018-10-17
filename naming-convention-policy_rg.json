@@ -1,0 +1,21 @@
+{
+    "policyRule": {
+        "if": {
+            "allOf": [
+                {
+                    "field": "type",
+                    "equals": "Microsoft.Resources/subscriptions/resourceGroups"
+                },
+                {
+                    "not": {
+                        "field": "name",
+                        "match": "????-???-rg-##"
+                    }
+                }
+            ]
+        },
+        "then": {
+            "effect": "audit"
+        }
+    }
+}
