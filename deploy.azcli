@@ -1,0 +1,31 @@
+
+$policy_name_vm = 'vm-custom-naming-conv'
+$policy_name_vm_disk = 'vm-custom-disk-naming-conv'
+$policy_name_vnet = 'vnet-custom-naming-conv'
+$policy_name_rg = 'rg-custom-naming-conv'
+$policy_name_sa = 'sa-custom-naming-conv'
+
+az policy definition create --name $policy_name_vm --display-name 'Virtual machine custom naming convention' --mode All --metadata 'category=CustomNamingConventions' --rules .\naming-convention-policy_vm.json
+az policy definition create --name $policy_name_vm_disk --display-name 'Virtual machine custom disk naming convention' --mode All --metadata 'category=CustomNamingConventions' --rules .\naming-convention-policy_vmdisk.json
+az policy definition create --name $policy_name_vnet --display-name 'Virtual network custom naming convention' --mode All --metadata 'category=CustomNamingConventions' --rules .\naming-convention-policy_vnet.json
+az policy definition create --name $policy_name_rg --display-name 'Resource group custom naming convention' --mode All --metadata 'category=CustomNamingConventions' --rules .\naming-convention-policy_rg.json
+az policy definition create --name $policy_name_sa --display-name 'Storage account custom naming convention' --mode All --metadata 'category=CustomNamingConventions' --rules .\naming-convention-policy_storage.json
+
+az policy assignment create --name 'Virtual machine custom naming convention - audit' --policy $policy_name_vm
+az policy assignment create --name 'Virtual machine custom disk naming convention - audit' --policy $policy_name_vm_disk
+az policy assignment create --name 'Virtual network custom naming convention - audit' --policy $policy_name_vnet
+az policy assignment create --name 'Resource group custom naming convention - audit' --policy $policy_name_rg
+az policy assignment create --name 'Storage account custom naming convention - audit' --policy $policy_name_sa
+
+# az policy assignment delete --name 'Virtual machine custom naming convention - audit'
+# az policy assignment delete --name 'Virtual machine custom disk naming convention - audit'
+# az policy assignment delete --name 'Virtual network custom naming convention - audit'
+# az policy assignment delete --name 'Resource group custom naming convention - audit'
+# az policy assignment delete --name 'Storage account custom naming convention - audit'
+
+# az policy definition delete --name $policy_name_vm
+# az policy definition delete --name $policy_name_vm_disk
+# az policy definition delete --name $policy_name_vnet
+# az policy definition delete --name $policy_name_rg
+# az policy definition delete --name $policy_name_sa
+
